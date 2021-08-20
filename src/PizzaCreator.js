@@ -15,6 +15,9 @@ const Temp = styled.div `
     width: 100%;
     margin: 10px;
 `
+const Error = styled.p `
+    color: red;
+`
 
 const temp = (props) => {
     const {values, change, submit, errors, disabled} = props;
@@ -33,18 +36,12 @@ const temp = (props) => {
     return (
         <>
          <form onSubmit={onSubmit} id='pizza-form'>
-            <div className='errors'>
-                <div>{errors.first_name}</div>
-                <div>{errors.last_name}</div>
-                <div>{errors.email}</div>
-                <div>{errors.password}</div>
-                <div>{errors.terms}</div>
-            </div>
             <NavBar />
             <Positioner>
                 <Temp>
                     <h2>Pick Your Pizza Size</h2>
                     <p>Required!</p>
+                    <Error>{errors.size}</Error>
                 </Temp>
                     <select
                         value={values.size}
@@ -114,6 +111,7 @@ const temp = (props) => {
                     <Temp>
                         <h2>Name for the order</h2>
                         <p>Required!</p>
+                        <Error>{errors.name}</Error>
                     </Temp>
                     <input id='name-input'
                         name='name'
