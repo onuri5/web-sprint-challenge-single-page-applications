@@ -7,12 +7,14 @@ import axios from 'axios';
 import * as yup from 'yup';
 import schema from './validation/formSchema';
 
+// Styling for the title
 const StyledTitle = styled.div `
   display: flex;
   justify-content: center;
   border-bottom: solid black 1px;
   color: #414a4c;
 `
+// Initial values for the data
 const initialFormValues = {
   name: '', 
   size: '',
@@ -23,6 +25,7 @@ const initialFormValues = {
   instructions: ''
 }
 
+// Initial error messages
 const initialFormErrors = {
   name: '', 
   size: ''
@@ -30,6 +33,7 @@ const initialFormErrors = {
 
 const initialDisabled = true
 
+// Img array for images on homepage
 const imgArr = [
   'https://images.unsplash.com/photo-1572829329047-dce11ac5aaab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
   'https://images.unsplash.com/photo-1620374228995-ec4e9e8fc79e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
@@ -40,11 +44,16 @@ const imgArr = [
 ]
 
 const App = () => {
+  // setting our initial order array to an empty array
   const [order, setOrder] = useState([]);
+  // setting our form values to empty strings or false depending on type
   const [formValues, setFormValues] = useState(initialFormValues);
+  // setting our form values to empty strings
   const [formErrors, setFormErrors] = useState(initialFormErrors)
+  // setting up disabled
   const [disabled, setDisabled] = useState(initialDisabled) 
 
+  // This posts our form data to the api where we then set our order and console.log() our new arr
   const postNewOrder = newOrder => {
     axios.post('https://reqres.in/api/orders', newOrder)
       .then(res => {
@@ -53,9 +62,11 @@ const App = () => {
   
       }).catch(err => console.error(err));
 
+      // Resets form values
       setFormValues(initialFormValues);
   }
 
+  // validates whether or not something is required or not
   const validate = (name, value) => {
     yup.reach(schema, name)
       .validate(value)

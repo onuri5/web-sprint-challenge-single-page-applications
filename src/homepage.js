@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import NavBar from './components/navbar'
 
+
+    // Styling the banner image at the top
     const MainImg = styled.div `
         display: flex;
         flex-flow: column nowrap;
@@ -14,19 +16,21 @@ import NavBar from './components/navbar'
         background-position: center;
         height: 50vh;
     `
-
+    
+    // Spacing and orienting the smaller images
     const ImgContainer = styled.div `
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
     `
 
+    // Sizing the smaller images
     const MinorImg = styled.img `
         width: 400px;
         height: auto;
-        position: center;
     `
 
+    // Setting up the image to have text underneath itself
     const SpecificImg = styled.div `
         padding: 20px;
         margin: 20px;
