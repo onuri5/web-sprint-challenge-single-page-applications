@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import HomePage from './homepage'
 import PizzaCreator from './PizzaCreator'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from 'styled-components';
+import axios from 'axios';
 
 const StyledTitle = styled.div `
   display: flex;
@@ -16,7 +17,8 @@ const initialFormValues = {
   pepperoni: false,
   mushroom: false,
   sausage: false,
-  olives: false
+  olives: false,
+  instructions: ''
 }
 
 const initialFormErrors = {
@@ -35,15 +37,50 @@ const imgArr = [
 ]
 
 const App = () => {
+  const [order, setOrder] = useState([]);
   const [formValues, setFormValues] = useState(initialFormValues);
+
+  const postNewOrder = newOrder => {
+    axios.post('https://reqres.in/api/orders', newOrder)
+      .then(res => {
+        setOrder([res.data, ...order])
+        console.log(order)
+      }).catch(err => console.error(err));
+
+      setFormValues(initialFormValues);
+  }
+
+  const inputChange = (name, value) => {
+    setFormValues({
+      ...formValues, [name]: value
+    })
+  }
+
+  const formSubmit = () => {
+    const newOrder = {
+      name: formValues.name.trim(),
+      size: formValues.size,
+      pepperoni: !!formValues.pepperoni,
+      mushroom: !!formValues.mushroom,
+      sausage: !!formValues.sausage,
+      olives: !!formValues.olives,
+      instructions: formValues.instructions
+    }
+   
+    postNewOrder(newOrder)
+  }
+
 
   return (
     <>
       <Router>
         <StyledTitle><h1>Dominick's</h1></StyledTitle>
             <Route path="/" exact><HomePage imgArr={imgArr}/></Route>
-            <Route path='/pizza'><PizzaCreator values={formValues} /></Route>
+            <Route path='/pizza'><PizzaCreator values={formValues} change={inputChange} submit={formSubmit}/></Route>
       </Router>
+      <div>{order.map((item, index) => {
+        return <p key={index}>{item.name}</p>
+      })}</div>
       
     </>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import NavBar from './components/navbar'
 
 const StyledReactLink = styled(Link) `
         color: #414a4c;
@@ -14,13 +15,6 @@ const StyledReactLink = styled(Link) `
             background: #414a4c;
             color: #FBFAF5;
         }
-    `
-
-    const NavPositioning = styled.nav `
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        border-bottom: solid black 1px;
     `
 
     const MainImg = styled.div `
@@ -60,13 +54,7 @@ const HomePage = (props) => {
 
     return (
         <div>
-            <NavPositioning>
-                <h3>Lambda Eats</h3>
-                <div>
-                    <StyledReactLink  to={'#'}>Home</ StyledReactLink>
-                    <StyledReactLink to={'#'}>About</ StyledReactLink>
-                </div>
-            </NavPositioning>
+            <NavBar />
             < MainImg>
                 <h1>Your Favorite Food Delivered While Coding</h1>
                 < StyledReactLink to={'/pizza'} id='order-pizza'>Pizza</ StyledReactLink>
