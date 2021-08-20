@@ -28,7 +28,7 @@ const StyledReactLink = styled(Link) `
             <NavPositioning>
                 <h3>Lambda Eats</h3>
                 <div>
-                    <StyledReactLink  to={'/'} id='order-pizza'>Home</ StyledReactLink>
+                    <StyledReactLink  to={'/'}>Home</ StyledReactLink>
                     <StyledReactLink to={'#'}>About</ StyledReactLink>
                 </div>
             </NavPositioning>
