@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import HomePage from './homepage'
-import PizzaCreator from './PizzaCreator'
+import Pizza from './PizzaCreator'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from 'styled-components';
 import axios from 'axios';
@@ -97,7 +97,7 @@ const App = () => {
         <StyledTitle><h1>Dominick's</h1></StyledTitle>
             <Route path="/" exact><HomePage imgArr={imgArr}/></Route>
             <Route path='/pizza'>
-              <PizzaCreator 
+              <Pizza 
               values={formValues} 
               change={inputChange} 
               submit={formSubmit}
@@ -106,7 +106,6 @@ const App = () => {
               />
             </Route>
       </Router>
-      
     </>
   );
 };

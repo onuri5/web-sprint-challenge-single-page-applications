@@ -65,7 +65,7 @@ const temp = (props) => {
                             name='pepperoni'
                             checked={values.pepperoni}
                             onChange={onChange}
-                            
+                            className="topping"
                         />
                     </label>
 
@@ -75,6 +75,7 @@ const temp = (props) => {
                             name='mushroom'
                             checked={values.mushroom}
                             onChange={onChange}
+                            className="topping"
                         />
                     </label>
 
@@ -84,6 +85,7 @@ const temp = (props) => {
                             name='sausage'
                             checked={values.sausage}
                             onChange={onChange}
+                            className="topping"
                         />
                     </label>
 
@@ -93,6 +95,7 @@ const temp = (props) => {
                             name='olives'
                             checked={values.olives}
                             onChange={onChange}
+                            className="topping"
                         />
                     </label>
                 </Positioner>

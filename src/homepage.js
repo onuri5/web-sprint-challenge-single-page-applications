@@ -3,20 +3,6 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import NavBar from './components/navbar'
 
-const StyledReactLink = styled(Link) `
-        color: #414a4c;
-        background-color: white;
-        text-decoration: none;
-        text-shadow: 0 0 black;
-        padding: 5px 10px;
-        margin: 5px;
-        border: solid black 1px;
-        &:hover {
-            background: #414a4c;
-            color: #FBFAF5;
-        }
-    `
-
     const MainImg = styled.div `
         display: flex;
         flex-flow: column nowrap;
@@ -57,12 +43,12 @@ const HomePage = (props) => {
             <NavBar />
             < MainImg>
                 <h1>Your Favorite Food Delivered While Coding</h1>
-                <Link to={'pizza'}><button id='order-pizza'>Pizza</button></ Link>
+                <Link to={'/pizza'}><button id='order-pizza'>Pizza?</button></ Link>
             </ MainImg>
             
-            <ImgContainer>{props.imgArr.map(img => {
+            <ImgContainer>{props.imgArr.map((img, index) => {
                 return <SpecificImg>
-                            <MinorImg src={img} alt='Fast Food' />
+                            <MinorImg src={img} alt='Fast Food' key={index}/>
                             <p>Local food in your area!</p>
                             <p>Wait time: 30-40 minutes</p>
                         </SpecificImg>
