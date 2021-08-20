@@ -9,14 +9,15 @@ const Positioner = styled.div `
 `
 const Temp = styled.div `
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: #adb5bd;
     width: 100%;
     margin: 10px;
 `
 
 const temp = (props) => {
-    const {values, change, submit} = props;
+    const {values, change, submit, errors, disabled} = props;
 
     const onChange = evt => {
         const { name, value, checked, type } = evt.target
@@ -31,9 +32,20 @@ const temp = (props) => {
 
     return (
         <>
+         <form onSubmit={onSubmit} id='pizza-form'>
+            <div className='errors'>
+                <div>{errors.first_name}</div>
+                <div>{errors.last_name}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.terms}</div>
+            </div>
             <NavBar />
             <Positioner>
-                <Temp><h2>Pick Your Pizza</h2></Temp>
+                <Temp>
+                    <h2>Pick Your Pizza Size</h2>
+                    <p>Required!</p>
+                </Temp>
                     <select
                         value={values.size}
                         name='size'
@@ -47,18 +59,8 @@ const temp = (props) => {
                         </select>
             </Positioner>
 
-            <form onSubmit={onSubmit} id='pizza-form'>
-                <label>Name: &nbsp;
-                    <input id='name-input'
-                        name='name'
-                        type='text'
-                        value={values.name}
-                        onChange={onChange}
-                    />
-                </label>
-
-                <div className='checkboxes'>
-                    <h4>Toppings</h4>
+            <Positioner className='checkboxes'>
+                <Temp><h2>Toppings</h2></Temp>
 
                     <label>Pepperoni
                         <input 
@@ -96,17 +98,32 @@ const temp = (props) => {
                             onChange={onChange}
                         />
                     </label>
-                </div>
+                </Positioner>
 
-                <label>Special Instructions: &nbsp;
+                <Positioner>
+                <Temp><h2>Special Instructions</h2></Temp>
                     <input id='special-text'
                         name='instructions'
                         type='text'
                         value={values.instructions}
                         onChange={onChange}
                     />
-                </label>
-                <button id='order-button'>Add to Order</button>
+                </Positioner>
+
+                <Positioner>
+                    <Temp>
+                        <h2>Name for the order</h2>
+                        <p>Required!</p>
+                    </Temp>
+                    <input id='name-input'
+                        name='name'
+                        type='text'
+                        value={values.name}
+                        onChange={onChange}
+                    />
+                </Positioner>
+
+                <Positioner><button id='order-button' disabled={disabled}>Add to Order</button></Positioner>
             </form>
         </>
     )
