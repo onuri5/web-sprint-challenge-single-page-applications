@@ -58,6 +58,7 @@ const HomePage = (props) => {
             < MainImg>
                 <h1>Your Favorite Food Delivered While Coding</h1>
                 < StyledReactLink id='order-pizza' to={'/pizza'}>Pizza</ StyledReactLink>
+                <a id='order-pizza' to={'#'}></a>
             </ MainImg>
             
             <ImgContainer>{props.imgArr.map(img => {
